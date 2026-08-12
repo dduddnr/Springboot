@@ -1,9 +1,6 @@
 package me.youngwook.springboot_developer;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;
 
@@ -22,6 +19,10 @@ public class Member {
     private String name;
 
     public Member(String name) {
+        this.name = name;
+    }
+
+    public void changeName(String name) {
         this.name = name;
     }
 }
