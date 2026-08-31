@@ -46,4 +46,14 @@ public class Article {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    @Column(name = "author", nullable = false)
+    private  String author;
+
+    @Builder
+    public Article(String author, String title, String content) {
+        this.author = author;
+        this.title = title;
+        this.content = content;
+    }
 }
