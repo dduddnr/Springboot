@@ -245,7 +245,6 @@ if (createButton) {
     createButton.addEventListener('click', event => {
         body = JSON.stringify({
             title: document.getElementById('title').value,
-            imageUrl: document.getElementById('image-url').value,
             content: document.getElementById('content').value
         });
         function success() {
@@ -303,8 +302,8 @@ function deleteCookie(name) {
 }
 
 // HTTP 요청을 보내는 함수
-function httpRequest(method, url, body, success, fail) {
-    fetch(url, {
+function httpRequest(method, body, success, fail) {
+    fetch({
         method: method,
         headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token'),
@@ -334,7 +333,7 @@ function httpRequest(method, url, body, success, fail) {
                 })
                 .then(result => {
                     localStorage.setItem('access_token', result.accessToken);
-                    httpRequest(method, url, body, success, fail);
+                    httpRequest(method, body, success, fail);
                 })
                 .catch(error => fail());
         } else {
